@@ -29,3 +29,9 @@ https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html
 https://download.openmmlab.com/mmcv/dist/cpu/torch1.11.0/index.html
 注意：需要匹配cuda版本、torch版本，根据你环境中的pytorch版本来下载对应的mmcv库
 ```
+## mmcv项目详解
+### mmpretrain
+```text
+https://github.com/open-mmlab/mmpretrain
+OpenMMLab Pre-training Toolbox and Benchmark
+```
