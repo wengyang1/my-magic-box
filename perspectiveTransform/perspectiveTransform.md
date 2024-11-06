@@ -39,3 +39,8 @@ OpenCV的透视变换算法本身可能存在一些限制或缺陷，导致在�
 实战经验：
 1 根据透视变换的目标区域将图片resize到合适大小，否则透视变换后清晰度会大幅降低，经过比较 INTER_AREA 插值法最优
 ```
+## 参考资料
+```text
+https://zhuanlan.zhihu.com/p/74597564
+https://blog.csdn.net/m0_43609475/article/details/112847314?ops_request_misc=&request_id=&biz_id=102&utm_term=%E9%80%8F%E8%A7%86%E5%8F%98%E6%8D%A2&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-112847314.142^v100^control&spm=1018.2226.3001.4187
+```
