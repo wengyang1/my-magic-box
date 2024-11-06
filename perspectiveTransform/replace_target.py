@@ -13,7 +13,7 @@ dst_x2, dst_y2 = 305, 257
 dst_x3, dst_y3 = 51, 244
 dst_points = np.array([[dst_x0, dst_y0], [dst_x1, dst_y1], [dst_x2, dst_y2], [dst_x3, dst_y3]], dtype=np.float32)
 dst_points = dst_points.reshape((-1, 1, 2))
-# 根据透视变换的目标区域将图片resize到合适大小，否则透视变换后清晰度会大幅降低，经过比较 INTER_AREA 插值法最优
+# todo 根据透视变换的目标区域将图片resize到合适大小，否则透视变换后清晰度会大幅降低，经过比较 INTER_AREA 插值法最优
 new_width, new_height = dst_x2 - dst_x0, dst_y2 - dst_y0
 src_image = cv2.resize(src_image, (new_width, new_height), interpolation=cv2.INTER_AREA)
 show_image('src_image', src_image)
