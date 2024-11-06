@@ -1,5 +1,5 @@
 import cv2
-from utils.cv_util import show_image
+from codes.my_util import show_image
 
 # 读取图像
 image = cv2.imread('../images/saber.jpg')
@@ -30,6 +30,6 @@ show_image('Nearest Neighbor Interpolation', nearest_image)
 show_image('Bilinear Interpolation', linear_image)
 show_image('Bicubic Interpolation', cubic_image)
 show_image('Lanczos Interpolation', lanczos_image)
-show_image('area', area_image)
+show_image('INTER_AREA', area_image)
 
 cv2.destroyAllWindows()

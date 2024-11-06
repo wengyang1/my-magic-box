@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from utils.cv_util import show_image
+from codes.my_util import show_image
 
 src_image = cv2.imread('../images/saber.jpg')
 dst_image = cv2.imread('../images/test.jpeg')
@@ -21,8 +21,8 @@ x0, y0, x1, y1 = 0, 0, src_image.shape[1], src_image.shape[0]
 src_rect = np.float32([[x0, y0], [x1, y0], [x1, y1], [x0, y1]])
 # 计算透视变换矩阵
 M = cv2.getPerspectiveTransform(src_rect, dst_points)
-transformed_image = cv2.warpPerspective(src_image, M, (
-    int(np.linalg.norm(dst_points[0] - dst_points[2])), int(np.linalg.norm(dst_points[1] - dst_points[3]))))
+# 应用透视变换
+transformed_image = cv2.warpPerspective(src_image, M, (dst_image.shape[1], dst_image.shape[0]))
 show_image('transformed_image', transformed_image)
 # 目标图片四边形区域填黑色 todo:直线抗锯齿 cv2.LINE_AA
 dst_image_copy = dst_image.copy()
@@ -30,10 +30,5 @@ dst_points = dst_points.astype(np.int32)
 cv2.fillPoly(dst_image_copy, [dst_points], (0, 0, 0), lineType=cv2.LINE_AA)
 show_image('dst_image_copy', dst_image_copy)
 
-# 转换图片加embedding
-transformed_image_embedded = np.zeros(dst_image.shape[:], dtype=np.uint8)
-transformed_image_embedded[0:transformed_image.shape[0], 0:transformed_image.shape[1], :] = transformed_image
-show_image('transformed_image_embedded', transformed_image_embedded)
-
-res = transformed_image_embedded + dst_image_copy
+res = transformed_image + dst_image_copy
 show_image('res', res)
