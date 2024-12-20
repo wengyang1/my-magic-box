@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 
 
 def show_image(win_name, one_mat):
@@ -44,3 +45,42 @@ def sharpen_color_image(image):
     sharpened_image = cv2.cvtColor(sharpened_yuv_image, cv2.COLOR_YUV2BGR)
 
     show_image('sharpened_image', sharpened_image)
+
+def concatenate_images_in_folder(folder_path):
+    # 获取文件夹中所有图片文件的路径
+    image_files = [os.path.join(folder_path, f) for f in sorted(os.listdir(folder_path)) if
+                   f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff'))]
+
+    if not image_files:
+        raise ValueError("No images found in the folder.")
+
+    # 读取第一张图片并获取其宽度
+    img1 = cv2.imread(image_files[0])
+    width_top = img1.shape[1]
+    total_height = img1.shape[0]
+
+    # 创建一个列表来存储所有调整大小后的图片
+    resized_images = [img1]
+
+    # 遍历剩余的图片并调整大小
+    for img_path in image_files[1:]:
+        img = cv2.imread(img_path)
+        height, width = img.shape[:2]
+        scale_factor = width_top / width
+        new_width = width_top
+        new_height = int(height * scale_factor)
+        img_resized = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_AREA)
+        resized_images.append(img_resized)
+        total_height += new_height
+
+    # 创建一个新的空白图片用于拼接
+    concatenated_image = np.zeros((total_height, width_top, 3), dtype=np.uint8)
+    concatenated_image.fill(255)  # 可选：填充为白色背景，如果需要黑色背景则使用0
+
+    # 将所有图片复制到新的空白图片中
+    y_offset = 0
+    for img in resized_images:
+        concatenated_image[y_offset:y_offset + img.shape[0], 0:img.shape[1]] = img
+        y_offset += img.shape[0]
+
+    return concatenated_image
