@@ -1,5 +1,94 @@
 # ch3 pytorch framework
 
+## train流程模板
+```text
+1 准备数据集 定义神经网络 定义loss 定义优化器
+2 dataloader -->
+forward -->
+计算loss --> 
+loss反向传播计算梯度 -->
+优化器根据梯度更新模型参数 -->  
+梯度清零
+```
+```text
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+import torchvision.transforms as transforms
+
+# 1. 数据加载和预处理
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
+])
+
+trainset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True)
+
+testset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+testloader = torch.utils.data.DataLoader(testset, batch_size=1000, shuffle=False)
+
+# 2. 定义神经网络
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.fc1 = nn.Linear(28 * 28, 512)
+        self.fc2 = nn.Linear(512, 256)
+        self.fc3 = nn.Linear(256, 10)
+
+    def forward(self, x):
+        x = x.view(-1, 28 * 28)
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+net = Net()
+
+# 3. 定义损失函数和优化器
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(net.parameters(), lr=0.01, momentum=0.9)
+
+# 4. 训练网络
+for epoch in range(5):  # 循环遍历数据集多次
+
+    running_loss = 0.0
+    for i, data in enumerate(trainloader, 0):
+        # 获取输入
+        inputs, labels = data
+
+        # 将梯度清零
+        optimizer.zero_grad()
+
+        # 前向传播、反向传播、优化
+        outputs = net(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+
+        # 打印统计信息
+        running_loss += loss.item()
+        if i % 100 == 99:    # 每100个mini-batches打印一次
+            print(f'[Epoch: {epoch + 1}, Batch: {i + 1}] loss: {running_loss / 100:.3f}')
+            running_loss = 0.0
+
+print('Finished Training')
+
+# 5. 在测试集上测试网络
+correct = 0
+total = 0
+with torch.no_grad():
+    for data in testloader:
+        images, labels = data
+        outputs = net(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+print(f'Accuracy of the network on the 10000 test images: {100 * correct / total} %')
+```
+
 ## dataset
 ```text
 def init
@@ -55,3 +144,4 @@ for batch in dataloader:
     print(batch)
 在这个例子中，my_collate_fn 函数将不同长度的序列数据填充到相同的长度，并返回处理后的批次数据和标签。这是处理变长序列数据时非常常见的一个需求。
 ```
+
