@@ -23,11 +23,22 @@ http://images.cocodataset.org/annotations/image_info_test2017.zip
 
 ## kitti
 ```text
-todo 
-https://blog.csdn.net/qq_16137569/article/details/118873033
-https://blog.csdn.net/weixin_41826859/article/details/134444926?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522afec4746b0c5503b0c05a2eaf1ec73bd%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=afec4746b0c5503b0c05a2eaf1ec73bd&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-134444926-null-null.142^v100^pc_search_result_base2&utm_term=%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E5%8F%82%E6%95%B0&spm=1018.2226.3001.4187
+kitti官网
+https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
 ```
+
 ```text
+全量下载
+https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_image_2.zip
+https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_prev_2.zip
+https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_velodyne.zip
+https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_calib.zip
+https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_label_2.zip
+https://s3.eu-central-1.amazonaws.com/avg-kitti/devkit_object.zip
+```
+
+```text
+分批下载
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_calib.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0001/2011_09_26_drive_0001_sync.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0002/2011_09_26_drive_0002_sync.zip
