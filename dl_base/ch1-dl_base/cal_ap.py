@@ -14,11 +14,7 @@ iou_threshold = 0.5
 
 # 根据IoU阈值判断TP/FP
 tps = (ious >= iou_threshold) & (true_labels == 1)
-fps = ~tps & (ious >= 0) & (true_labels != 1)  # 注意这里的条件调整，确保只有IoU不低且标签为0的才是FP
-# 注意：上面的fps条件中包含了ious >= 0，这实际上是多余的，因为IoU值总是在0到1之间。
-# 但为了清晰起见，我还是保留了它，以强调我们是在基于IoU和标签来判断TP/FP的。
-# 在实际应用中，你只需要 fps = (ious < iou_threshold) | (true_labels == 0)，但要考虑到标签为0且IoU高的情况可能是由误检或其他原因造成的，
-# 因此有时可能需要更复杂的逻辑来判断FP。但在这个简化的例子中，我们使用上面的条件。
+fps = (ious < iou_threshold) | (true_labels == 0)
 
 # 对置信度进行排序，并获取排序后的索引
 sorted_indices = np.argsort(-confidences)
