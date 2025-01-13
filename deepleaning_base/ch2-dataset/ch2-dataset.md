@@ -201,7 +201,3 @@ https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_10_03_drive_0042/2
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_10_03_drive_0047/2011_10_03_drive_0047_sync.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_10_03_drive_0058/2011_10_03_drive_0058_sync.zip
 ```
-
-```text
-
-```
