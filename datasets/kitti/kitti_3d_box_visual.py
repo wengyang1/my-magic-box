@@ -1,35 +1,6 @@
 import numpy as np
 import cv2
 
-def calculate_new_coordinates(original_width, original_height, target_width, target_height, corners_2d):
-    # 计算裁剪区域的宽度和高度，以保持宽高比尽可能接近目标图像的宽高比
-    target_aspect_ratio = target_width / target_height
-    original_aspect_ratio = original_width / original_height
-
-    if target_aspect_ratio > original_aspect_ratio:
-        # 目标图像更宽，因此我们需要裁剪高度并缩放宽度
-        crop_height = int(original_width / target_aspect_ratio)
-        crop_width = original_width
-        y_start = (original_height - crop_height) // 2
-        x_start = 0
-    else:
-        # 目标图像更高或等比，因此我们需要裁剪宽度并缩放高度
-        crop_width = int(original_height * target_aspect_ratio)
-        crop_height = original_height
-        x_start = (original_width - crop_width) // 2
-        y_start = 0
-
-    # 计算缩放比例
-    scale_x = target_width / crop_width
-    scale_y = target_height / crop_height
-
-    # 计算新图像上的坐标
-    corners_2d_new = np.zeros((len(corners_2d),2))
-    corners_2d_new[:,0] =  (corners_2d[:,0] - x_start) * scale_x
-    corners_2d_new[:,1] = (corners_2d[:,1] - y_start) * scale_y
-
-    return corners_2d_new
-
 def load_kitti_labels(label_file):
     """
     Load 3D bounding boxes from a KITTI label file (.txt).
@@ -124,7 +95,6 @@ def main():
 
         # Clip to image boundaries
         corners_2d = np.clip(corners_2d, [0, 0], [image.shape[1] - 1, image.shape[0] - 1])
-        # corners_2d=calculate_new_coordinates(1392,512,1224,370,corners_2d)
         # Draw the projected bounding box on the image (for visualization)
         corners_2d_int = corners_2d.astype(int)
 
