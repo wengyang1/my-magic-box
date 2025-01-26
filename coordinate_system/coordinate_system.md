@@ -1,9 +1,12 @@
+# 坐标系
 ```text
 坐标系的英文是 "coordinate system"。这个词组描述了用于确定空间中点的位置的数学系统，
 它通常由一组有序的实数或复数（称为坐标）组成，这些坐标根据特定的规则与空间中的点相对应。
 在几何学和物理学中，坐标系是非常重要的工具，它允许我们精确地描述和计算空间中的物体和事件。
-常见的坐标系包括笛卡尔坐标系（Cartesian coordinate system）、
-极坐标系（polar coordinate system）、圆柱坐标系（cylindrical coordinate system）、
+常见的坐标系包括
+笛卡尔坐标系（Cartesian coordinate system）、
+极坐标系（polar coordinate system）、
+圆柱坐标系（cylindrical coordinate system）、
 球坐标系（spherical coordinate system）等。
 例如，在二维笛卡尔坐标系中，一个点的位置由两个坐标（通常称为x和y）确定，
 它们分别表示该点沿两个垂直轴（通常是水平轴和垂直轴）的位移。
@@ -12,7 +15,7 @@
 它们分别表示该点沿三个互相垂直的轴（通常是水平轴、垂直轴和垂直于这两者的轴）的位移。
 因此，"coordinate system" 是描述这种用于定位和描述空间中点的数学框架的英文术语。
 ```
-## Homogeneous Coordinates
+# Homogeneous Coordinates
 ```text
 齐次坐标系（Homogeneous Coordinates）是一个在投影几何中使用的坐标系统，它使用一个n+1维的向量来表示一个原本是n维的向量或点。这种表示方法在数学、计算机图形学、机器人学及自动驾驶等领域中具有广泛的应用。以下是对齐次坐标系的详细解释：
 
