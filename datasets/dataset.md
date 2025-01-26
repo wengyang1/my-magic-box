@@ -1,7 +1,5 @@
-# ch2 dataset
 
-## coco
-
+# coco
 ```tex
 官方下载地址 https://cocodataset.org/#download
 1、2014年数据集的下载(推荐迅雷下载)
@@ -21,14 +19,38 @@ http://images.cocodataset.org/zips/test2017.zip
 http://images.cocodataset.org/annotations/image_info_test2017.zip
 ```
 
-## kitti
+# kitti
+## kitti官网
 ```text
-kitti官网
 https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
 ```
-
+## 简介
 ```text
-全量下载
+KITTI数据集是国际上最大的自动驾驶场景下的计算机视觉算法评测数据集，其label文件中的每个字段都承载着特定的含义。以下是KITTI数据集label中每个字段的详细解释：
+
+物体类别：
+第一个字段通常是一个字符串，表示检测到的物体类别。可能的值包括'Car', 'Van', 'Truck', 'Pedestrian', 'Person_sitting', 'Cyclist', 'Tram', 'Misc'以及'DontCare'。其中，'DontCare'标签表示该区域没有被标注，这通常是因为目标物体距离激光雷达太远，超出了雷达的扫描范围。
+截断程度：
+第二个字段是一个浮点数，范围从0到1，表示物体是否被截断。0表示物体没有被截断，1表示物体被完全截断（即物体的一部分超出了图像边界）。
+遮挡程度：
+第三个字段是一个整数，表示物体被遮挡的程度。可能的值包括0（完全可见）、1（小部分遮挡）、2（大部分遮挡）和3（完全遮挡或未知）。
+观察角度（alpha）：
+第四个字段是一个浮点数，表示物体的观察角度。这个角度是在相机坐标系下，以相机原点为中心，相机原点到物体中心的连线为半径，将物体绕相机y轴旋转至相机z轴时，物体方向与相机x轴的夹角。范围是从-π到π。
+2D边界框：
+第五到第八个字段分别表示物体的2D边界框的左上角和右下角的x、y坐标（在图像像素坐标系下）。这四个值（xmin, ymin, xmax, ymax）定义了物体在图像上的位置。
+3D尺寸：
+第九到第十一个字段分别表示物体的高度、宽度和长度（单位为米）。这三个值（h, w, l）定义了物体的3D尺寸。
+3D位置：
+第十二到第十四个字段分别表示物体的3D中心在相机坐标系下的x、y、z坐标。这三个值定义了物体在3D空间中的位置。
+3D空间方向（rotation_y）：
+第十五个字段是一个浮点数，表示物体的3D空间方向。这是在相机坐标系下，物体的全局方向角（物体前进方向与相机坐标系x轴的夹角），范围也是从-π到π。与alpha不同的是，rotation_y直接在相机坐标中给出，而alpha还会考虑从相机中心到物体中心的矢量来计算物体相对于相机的相对方向。
+检测的置信度：
+第十六个字段是一个浮点数，表示检测的置信度。这个值通常用于评估检测结果的可靠性。
+综上所述，KITTI数据集label中的每个字段都提供了关于检测到的物体的详细信息，这些信息对于自动驾驶系统中的物体检测、跟踪和识别等任务至关重要。
+```
+
+## 全量下载
+```text
 https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_image_2.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_prev_2.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_velodyne.zip
@@ -36,9 +58,8 @@ https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_calib.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_label_2.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/devkit_object.zip
 ```
-
+## 分批下载
 ```text
-分批下载
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_calib.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0001/2011_09_26_drive_0001_sync.zip
 https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0002/2011_09_26_drive_0002_sync.zip
